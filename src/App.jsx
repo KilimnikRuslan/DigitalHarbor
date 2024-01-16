@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState  } from 'react'
 import Footer from './components/Footer'
 import Item  from './components/Item'
 import Header from './components/Header'
@@ -65,7 +65,7 @@ class App extends React.Component{
           img:  'acer.jpg',
           desc:  'lorem ipsum',
           category: 'Laptop',
-          price: '1199',
+          price: '11',
         },
         { 
           id: 8,
@@ -85,48 +85,48 @@ class App extends React.Component{
         },
       ]
     }
-    this.state.currentItems = this.state.items
-    this.addToOrder = this.addToOrder.bind(this)
-    this.deleteOrder = this.deleteOrder.bind(this)
-    this.chooseCategory = this.chooseCategory.bind(this)
+
+this.state.currentItems = this.state.items;
+    this.addToOrder = this.addToOrder.bind(this);
+    this.deleteOrder = this.deleteOrder.bind(this);
+    this.chooseCategory = this.chooseCategory.bind(this);
   }
+
   render() {
-  return (
-    <div className="wraper">
-      <Header orders={this.state.orders} onDelete={this.deleteOrder}/>
-      <Categories chooseCategory={this.chooseCategory}/>
-      <Item  items={this.state.currentItems} onAdd={this.addToOrder} />
-      <Footer/>
-    </div>
-   )
+    return (
+      <div className="wraper">
+        <Header orders={this.state.orders} onDelete={this.deleteOrder} />
+        <Categories chooseCategory={this.chooseCategory} />
+        <Item items={this.state.currentItems} onAdd={this.addToOrder} />
+        <Footer />
+      </div>
+    );
   }
 
-
-chooseCategory(category) {
-  if (category === 'all') {
-    this.setState({ currentItems: this.state.items });
-    return;
-  }
+  chooseCategory(category) {
+    if (category === 'all') {
+      this.setState({ currentItems: this.state.items });
+      return;
+    }
     this.setState({
-      currentItems: this.state.items.filter(el => el.category === category)
-    })
+      currentItems: this.state.items.filter((el) => el.category === category),
+    });
   }
 
   deleteOrder(id) {
     this.setState({
-      orders: this.state.orders.filter(el => el.id !== id)});
+      orders: this.state.orders.filter((el) => el.id !== id),
+    });
   }
 
-
   addToOrder(item) {
-    let isInArray = false
-    this.state.orders.forEach(el => {
-      if (el.id === item.id)
-      isInArray = true
-    })
-    if (!isInArray)
-    this.setState({orders: [...this.state.orders, item] })
+    let isInArray = false;
+    this.state.orders.forEach((el) => {
+      if (el.id === item.id) isInArray = true;
+    });
+    if (!isInArray) this.setState({ orders: [...this.state.orders, item] });
   }
 }
 
-export default App
+
+export default App;

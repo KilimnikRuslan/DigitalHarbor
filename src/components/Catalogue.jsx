@@ -1,17 +1,17 @@
-import React, { Component } from 'react'
+import {React } from 'react'
 
-export class Catalogue extends Component {
-  render() {
-    return (
-        <div className="item">
-            <img src={`/img/${this.props.item.img}`}/>
-            <h2>{this.props.item.title}</h2>
-            <p>{this.props.item.desc}</p>
-            <b>{this.props.item.price}$</b>
-            <div className="add-to-card" onClick={() => this.props.onAdd(this.props.item)}>+</div>
-        </div>
-    )
-  }
-}
+const Catalogue = (props) => {
+  return (
+    <div className="item">
+      <img src={`/img/${props.item.img}`} alt={props.item.title} />
+      <h2>{props.item.title}</h2>
+      <p>{props.item.desc}</p>
+      <b>{`${props.item.price}$`}</b>
+      <div className="add-to-card" onClick={() => props.onAdd(props.item)}>
+        +
+      </div>
+    </div>
+  );
+};
 
-export default Catalogue
+export default Catalogue;
